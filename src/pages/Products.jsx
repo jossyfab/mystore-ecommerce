@@ -6,6 +6,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const { addToCart } = useContext(CartContext);
 
@@ -17,10 +18,25 @@ const Products = () => {
         }
         return res.json();
       })
-      .then(data => setProducts(data.products))
-      .catch(err => setError(err.message));
+      .then(data => {
+       setProducts(data.products);
+       setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message); 
+        setLoading(false);
+      });
   }, []);
 
+
+  if (loading) {
+  return (
+    <div className="text-center py-10 text-lg">
+      Loading products...
+    </div>
+  );
+}
+  if (loading) return <p>Loading...</p>
   if (error) return <p>{error}</p>;
 
   return (
@@ -55,7 +71,6 @@ const Products = () => {
           ))}
 
       </div>
-
     </div>
   );
 };
