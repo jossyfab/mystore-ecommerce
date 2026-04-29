@@ -6,6 +6,7 @@ import './App.css'
 import { useState } from "react"
 import ProductDetails from "./pages/ProductDetails"
 import Navbar from "./components/Navbar"
+import Checkout from "./pages/Checkout"
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/products" element={<Products/>} />
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/checkout" element={<Checkout/>} />
       </Routes>
     </Router>
 
